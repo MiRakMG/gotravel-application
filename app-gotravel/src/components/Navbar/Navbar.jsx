@@ -1,6 +1,7 @@
 import styles from "./Navbar.module.scss";
 
 import React from "react";
+import NavContext from "../../Context/NavContext";
 
 // icons
 import {
@@ -9,60 +10,70 @@ import {
     MdHotel,
     MdKitesurfing,
     MdDirectionsCarFilled,
-    MdLogout,
     MdOutlineLogout,
 } from "react-icons/md";
-import { IoMdLogin } from "react-icons/io";
-import { FaReact, FaTimes } from "react-icons/fa";
+
+import { FaTimes } from "react-icons/fa";
 import { BsThreeDots } from "react-icons/bs";
 
 import { IoMdAddCircle } from "react-icons/io";
 
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
+import { useContext } from "react";
 
-const Navbar = () => {
-    const [nav, setnav] = useState(false);
-        const checkWindowSize =()=>{
-        if (window.innerWidth < 1024) setnav(!nav);
-                                };
-    const NavUrl = ({ url, icon, description }) => {
-        return <li className={styles.li_navlink}>
-            <NavLink 
-            to={`${url}`}
-            onClick={()=>checkWindowSize()}
-            className={({isActive}) => (isActive ? styles.active : undefined)}>
-                {icon}
-                <span className={styles.description}>{description}</span>
-            </NavLink>
-        </li>
+const NavUrl = ({ url, icon, description }) => {
+    const { nav, setNav } = useContext(NavContext);
+    const checkWindowSize = () => {
+      if (window.innerWidth < 1024) setNav(!nav);
     };
-
-    return <div className={`${styles.navbar_container} ${nav ? styles.navbar_mobile_active : undefined}`}>
+  
+    return (
+      <li className={styles.li_navlink}>
+        <NavLink
+          to={`${url}`}
+          className={({ isActive }) => (isActive ? styles.active : undefined)}
+          onClick={() => checkWindowSize()}
+        >
+          {icon}
+          <span className={styles.description}>{description}</span>
+        </NavLink>
+      </li>
+    );
+  };
+  
+  const Navbar =() => {
+    const { nav, setNav } = useContext(NavContext);
+    const navigate = useNavigate();
+    
+    return (
+        <div 
+            className={`${styles.navbar_container} ${
+                nav ? styles.navbar_mobile_active : undefined}`}
+            >
 
         <nav className={nav ? undefined : styles.nav_small}>
             
             <div className={styles.logo}>
-                <FaTimes className={styles.mobile_cancel_icon} onClick={() => setnav(!nav)} />
+                <FaTimes className={styles.mobile_cancel_icon} onClick={() => { setNav(!nav);}} />
             </div>
             
             {/* Menu */}
             <ul className={styles.menu_container}>
-            <button className={styles.btn}> {nav ? "+ Créer un voyage" : <IoMdAddCircle/>}</button>    
+            <button className={styles.btn} onClick={() => navigate('/createTrip') }> {nav ? "+ Créer un voyage" : <IoMdAddCircle/>}</button>    
             {/* Catégories Voyages */}
                 <span className={styles.categories}>
                     {nav ? "Voyages" : <BsThreeDots/> }
                 </span>
                 
                 <NavUrl
-                url="/Listes"
+                url="/"
                 icon={< MdViewList />}
                 description="Listes"
                 />
                                 
                 <NavUrl
-                url="/Calendrier"
+                url="calendrier"
                 icon={< MdCalendarToday />}
                 description="Calendrier"
                 />
@@ -75,19 +86,19 @@ const Navbar = () => {
                 </span>
 
                 <NavUrl
-                url="/Hotels"
+                url="hotels"
                 icon={< MdHotel />}
                 description="Hôtels"
                 />
 
                 <NavUrl
-                url="/Activites"
+                url="activites"
                 icon={< MdKitesurfing />}
                 description="Activités"
                 />
 
                 <NavUrl
-                url="/Location"
+                url="location"
                 icon={< MdDirectionsCarFilled />}
                 description="Location"
                 />
@@ -95,14 +106,22 @@ const Navbar = () => {
             {/* Logout btn */}
                 <div className={styles.btn_logout}
                 onClick={() => {
-                    setnav(!nav);
+                    setNav(!nav);
                 }}
                 >
                     <MdOutlineLogout />
                 </div>
             </ul>
         </nav>
-    </div>;
+
+        <div
+        className={nav ? styles.mobile_nav_background_active : undefined}
+        onClick={() => {
+          setNav(!nav);
+        }}
+      ></div>
+    </div>
+    )
 };
 
 export default Navbar;

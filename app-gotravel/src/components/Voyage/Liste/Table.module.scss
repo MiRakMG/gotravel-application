@@ -1,0 +1,48 @@
+.table_container {
+    border-collapse: collapse;
+    background-color: rgb(255, 255, 255);
+    padding: 5rem;
+
+    display: block;
+    border: 1px solid rgb(211, 211, 211);
+
+    th {
+            font-weight: 400;
+            letter-spacing: 0.1rem;
+            color:rgb(102, 102, 102) ;
+            padding: 1rem;
+        }
+
+    thead {
+       tr {
+            text-align: left;
+
+            
+        }
+    }
+    
+    button {   
+            color: white;
+            font-family: Poppins;
+            letter-spacing: 1px;
+            background-color: rgb(231, 76, 84);
+            border: none;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 0 0 0 2rem;
+
+            &:hover {
+                background-color: rgb(209, 29, 59);
+            }
+            }
+
+    tbody {
+        td {
+        background-color: rgb(243, 243, 243);
+        padding: 1rem;
+        border-bottom: 1px solid rgb(129, 129, 129);
+        }
+    }
+    
+    
+}
