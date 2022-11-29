@@ -13,7 +13,7 @@ const Triplist = () => {
   return (
     <main>
       <div className={styles.title}>
-        <div className={styles.title_icon}>
+        <div className={styles.title_big}>
           <h1>Listes des voyages</h1>
         </div>
         <div className={styles.create_btn}>

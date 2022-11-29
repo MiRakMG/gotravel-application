@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Triplist />} />
             <Route path='/hotels' element={<Hotels />} />
-            <Route path='/createTrip' element={<CreateTrip />} />
+            <Route path='createTrip/*' element={<CreateTrip />} />
           </Routes>
         } />
       </NavContext.Provider>

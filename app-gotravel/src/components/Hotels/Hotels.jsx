@@ -1,9 +1,15 @@
 import styles from "./Hotels.model.scss";
+import RechercheHotels from "./RechercheHotels";
+import HotelList from "./HotelList";
 
 const Hotels = () => {
     return (
         <main>
-            <h1>Listes des hotels</h1>
+            <div className={styles.container_hotels}>
+                <RechercheHotels />
+                <HotelList />
+            </div>
+        
         </main>
     )
 }
