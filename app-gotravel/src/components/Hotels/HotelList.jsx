@@ -1,7 +1,10 @@
 import React from "react";
+import { useGetAllPrestationsQuery, useGetPrestationQuery } from "../../Services/prestations";
 
 const HotelList = () => {
-
+    const {data : prestations,error,isLoading} = useGetAllPrestationsQuery('prestations')
+    const {data: prestation} = useGetPrestationQuery(18695)
+    console.log(prestation)
     return (
         
       <div className="max-w-sm rounded overflow-hidden shadow-lg">

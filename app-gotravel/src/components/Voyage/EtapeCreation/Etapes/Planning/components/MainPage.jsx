@@ -6,12 +6,12 @@ function MainPage() {
   return (
     <div className="flex ">
         {/* DaysBar*/}
-        <div class="flex-1 h-96 w-10">
+        <div className="flex-1 h-96 w-10">
             <DaysBar />
         </div>
 
         {/* section*/}
-        <div class="flex-1">
+        <div className="flex-1">
             <DaysPage />
         </div>
     </div>
