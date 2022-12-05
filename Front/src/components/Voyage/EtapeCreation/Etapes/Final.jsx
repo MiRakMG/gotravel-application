@@ -28,6 +28,7 @@ export default function Final() {
           </div>
           <div className="text-lg font-semibold text-gray-500">
             Voyage créer avec succès!
+            Avec une tarifs de 400Euros/pax
           </div>
           <a className="mt-10" href="/">
             <button className="h-10 px-5 text-green-700 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-green-500 hover:text-green-100">
