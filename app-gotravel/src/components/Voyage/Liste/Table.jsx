@@ -6,9 +6,7 @@ const Tables = () => {
     <table className={styles.table_container}>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Types de voyageurs</th>
-          <th>Nom</th>
+          <th>Clients</th>
           <th>Début</th>
           <th>Fin</th>
           <th>Status</th>
@@ -16,9 +14,7 @@ const Tables = () => {
       </thead>
       <tbody>
         <tr>
-          <td>1</td>
-          <td>Group</td>
-          <td>Visites</td>
+          <td>Visiteur</td>
           <td>16/11/2022</td>
           <td>26/11/2022</td>
           <td>En route</td>
@@ -27,8 +23,6 @@ const Tables = () => {
           </td>
         </tr>
         <tr>
-          <td>2</td>
-          <td>Single</td>
           <td>Touristes</td>
           <td>16/11/2022</td>
           <td>26/11/2022</td>
@@ -38,8 +32,6 @@ const Tables = () => {
           </td>
         </tr>
         <tr>
-          <td>3</td>
-          <td>Double</td>
           <td>Voyages d'études</td>
           <td>16/11/2022</td>
           <td>26/11/2022</td>

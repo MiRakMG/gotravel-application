@@ -13,8 +13,8 @@ const CreateTrip = () =>{
 
     const [currentStep, setCurrentStep] = useState(1);
     const steps = [
-        "Description du voyage",
         "Client",
+        "Description du voyage",  
         "Planning",
         "Final",
       ];
@@ -22,9 +22,9 @@ const CreateTrip = () =>{
       const displayStep =(step)=>{
         switch(step) {
             case 1:
-                return <DescriptionTrip />
-            case 2:
                 return <Client />
+            case 2:
+                return <DescriptionTrip />
             case 3:
                 return <Planning />
             case 4:
