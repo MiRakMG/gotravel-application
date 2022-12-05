@@ -22,13 +22,16 @@
 
 .submenu {
     background: white;
+    height: 50rem;
+    width: 100rem;
+    padding: 8rem;
     -webkit-box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.22);
     box-shadow: 5px 5px 15px -1px rgba(0, 0, 0, 0.22);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, 0%);
-    border-radius: 5px;
+    border-radius: 10px;
     opacity: 0;
     padding-block: 0.7rem 0;
 
@@ -37,17 +40,24 @@
         padding-right: 1rem;
     }
 
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: rgb(9, 35, 75);
+    }
     .input {
         display: flex;
-        align-items: center;
-        padding-bottom: 8px;
-        border-bottom: 1px solid lightgray;
+        padding-top: 2rem;
+        
+        h2 {
+            padding-right: 1rem;
+        }
         input {
             color: rgb(34, 34, 34);
             outline: none;
-            border: none;
+            border-bottom: 1px solid lightgray;
             width: 500px;
-            padding-left: 10px;
+            padding-left: 5px;
             font-size: 1rem;
             @media screen and (max-width: 550px) {
                 width: 82vw;
@@ -68,6 +78,44 @@
             text-transform: uppercase;
         }
     }
+
+    .hotels{
+        padding-top: 2rem;
+    }
+
+    .Prestation
+    {    
+        padding-top: 2rem;
+        .Prestainput{
+            input{
+                color: rgb(34, 34, 34);
+                outline: none;
+                border-bottom: 1px solid lightgray;
+                width: 250px;
+                padding-left: 5px;
+                padding-top: 15px;
+                font-size: 1rem;
+                @media screen and (max-width: 550px) {
+                    width: 82vw;
+                    }
+                }
+            }
+        .radioType{
+            padding-top: 25px;
+            input{
+                width: 50px;
+            }
+        }
+    }
+
+    .btn{
+        text-align: right;
+        padding-top: 3rem;
+
+        button{
+            margin: 1rem;
+        }
+    }
 }
 
 .submenu_active {
@@ -76,26 +124,3 @@
     transition: all ease-in-out 200ms;
 }
 
-.recent_search {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.8rem;
-    color: rgb(34, 34, 34);
-    padding: 0.2rem;
-    border-radius: 5px;
-    svg {
-        font-size: 1.2rem;
-        color: rgb(145, 144, 144);
-    }
-
-    &:hover {
-        background: #2669ce;
-        color: whitesmoke;
-
-        svg {
-            color: whitesmoke;
-        }
-    }
-}

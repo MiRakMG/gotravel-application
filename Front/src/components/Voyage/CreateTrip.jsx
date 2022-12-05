@@ -42,7 +42,7 @@ const CreateTrip = () =>{
       };
     
       return (
-        <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-1/2">
+        <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-4/5">
           {/* Stepper */}
           <div className="horizontal container mt-5 ">
             <Etape steps={steps} currentStep={currentStep} />
