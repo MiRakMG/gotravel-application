@@ -24,7 +24,8 @@ export default function AddPlanning() {
           }`}
         >
           <div>
-            
+            <h1>Hôtel</h1>
+            <h1>Activité</h1>
           </div>
         </div>
 
