@@ -1,12 +1,9 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-export const prestationApi = createApi({
-  reducerPath: "prestationsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/" }),
-  tagTypes: ["Prestations"],
+import {baseRoute} from "./baseRoute"
+const prestationApi = baseRoute.injectEndpoints({
   endpoints: (builder) => ({
     getAllPrestations: builder.query({
       query: () => "prestations",
+      keepUnusedDataFor: 5,
       providesTags: (result) =>
         result
           ? [
@@ -29,7 +26,7 @@ export const prestationApi = createApi({
       invalidatesTags: [{ type: "Prestations", code_cli: "LIST" }],
     }),
     getPrestation: builder.query({
-      query: (code_cli) => `prestations/${code_cli}`,
+      query: ({code_cli}) => `prestations/${code_cli}`,
       providesTags: (result, error, code_cli) => [
         { type: "Prestations", code_cli },
       ],

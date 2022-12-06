@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { prestationApi } from "../Services/prestations";
+import { baseRoute } from "../Services/baseRoute";
 
 export const store = configureStore({
   reducer: {
-    [prestationApi.reducerPath]: prestationApi.reducer,
+    [baseRoute.reducerPath]: baseRoute.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(prestationApi.middleware),
+    getDefaultMiddleware().concat(baseRoute.middleware),
 });
 
 

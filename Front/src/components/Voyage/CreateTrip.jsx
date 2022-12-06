@@ -33,12 +33,17 @@ const CreateTrip = () =>{
         }
       };
 
-      const handleClick = (direction) => {
+      const handleClick = (direction,aboutBtn=null) => {
         let newStep = currentStep;
     
         direction === "next" ? newStep++ : newStep--;
         // check if steps are within bounds
         newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
+        
+        // Post data in bdd onClickConfirmButton
+        if (aboutBtn?.target.innerText === "CONFIRM") {
+          console.log("Confirmation")
+        }
       };
     
       return (
