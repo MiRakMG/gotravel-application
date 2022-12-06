@@ -1,13 +1,7 @@
 import React from "react";
-import { useAddClientMutation } from "../../../../Services/clients";
 
-export default function Client() {
-  const [addClient] = useAddClientMutation();
-
-  const postClient = () => {
-    addClient({name: "Test", number: 5})
-  }
-
+export default function Client({register}) {
+  
   return (
     <div className="flex flex-col ">
       <div className="mx-2 w-full flex-1">
@@ -18,6 +12,7 @@ export default function Client() {
           <input
             name="type_client"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
+            {...register("name")}
           />
         </div>
       </div>
@@ -30,6 +25,7 @@ export default function Client() {
             name="nombre_client"
             type="number"
             className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
+            {...register("number")}
           />
         </div>
       </div>
