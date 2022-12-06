@@ -5,7 +5,7 @@ export default function Client() {
     return (
       <div className="flex flex-col ">
         <div className="mx-2 w-full flex-1">
-          <div className="mt-3 h-6 text-base font-bold uppercase leading-8 text-gray-500">
+          <div className="mt-3 h-6 text-sm font-bold uppercase leading-8 text-gray-500">
             Nom du client
           </div>
           <div className="my-2 flex rounded border border-gray-200 bg-white p-1">
@@ -17,7 +17,7 @@ export default function Client() {
           </div>
         </div>
         <div className="mx-2 w-full flex-1">
-          <div className="mt-3 h-6 text-base font-bold uppercase leading-8 text-gray-500">
+          <div className="mt-3 h-6 text-sm font-bold uppercase leading-8 text-gray-500">
             Nombre de client
           </div>
           <div className="my-2 flex rounded border border-gray-200 bg-white p-1">

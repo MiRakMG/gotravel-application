@@ -6,6 +6,7 @@ import RightNavbar from './components/HautNavbar/HautNavbar';
 import Triplist from './components/Voyage/Triplist';
 import Hotels from './components/Hotels/Hotels';
 import CreateTrip from './components/Voyage/CreateTrip';
+import CreateHotel from './components/Hotels/CreateHotel';
 
 import NavContext from './Context/NavContext';
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path='/' element={<Triplist />} />
             <Route path='/hotels' element={<Hotels />} />
             <Route path='createTrip/*' element={<CreateTrip />} />
+            <Route path='/createHotel' element={<CreateHotel />} />
           </Routes>
         } />
       </NavContext.Provider>
