@@ -4,6 +4,19 @@ import { Client } from "../entity/Client";
 
 export class ClientController {
 
+    public static async getAllClient(req: Request, res: Response)
+    {
+        const clients = await AppDataSource.manager.find(Client, {
+            relations: {
+                prendre: {
+                    date: true
+                }
+            }
+        })
+
+        return res.status(200).json(clients)
+    }
+
     public static async create(req: Request, res: Response) 
     {
         const client = await AppDataSource.manager.save(Client, {

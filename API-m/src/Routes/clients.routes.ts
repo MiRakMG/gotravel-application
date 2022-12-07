@@ -4,6 +4,7 @@ import { PrestationController } from "../Controllers/PrestationController";
 
 export const clientRouter = Router()
 
+clientRouter.get('', ClientController.getAllClient)
 clientRouter.get('/:id', PrestationController.getPrestationPerClient)
 clientRouter.post('', ClientController.create)
 clientRouter.delete('/:id', ClientController.remove)
