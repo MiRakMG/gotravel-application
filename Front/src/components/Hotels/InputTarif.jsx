@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 
 function InputTarif() {
-  const [inputList, setinputList]= useState([{firstName:'', categorie:''}]);
+  const [inputList, setinputList]= useState([{typelogement:'', categorie:'', tarif:''}]);
 
   const handleinputchange=(e, index)=>{
     const {name, value}= e.target;
@@ -18,8 +18,8 @@ function InputTarif() {
     setinputList(list);
   }
 
-  const handleaddclick=()=>{ 
-    setinputList([...inputList, { typelogement:'', lastName:'', tarif:''}]);
+  const handleaddclick=()=>{
+    setinputList([...inputList, {saison:'', typelogement:'', categorie:'', tarif:''}]);
   }
   return (
     <Container>
@@ -28,8 +28,15 @@ function InputTarif() {
             { 
             inputList.map( (x,i)=>{
               return(
-              <div>
+              <div className="py-4">
+                <select name="saison">
+                        <option selected>Moyenne Saison</option>
+                        <option selected>Haute Saison</option>
+                        <option selected>Basse Saison</option>
+                        <option selected>Uni Saison</option>
+                </select>
                 <div className="py-4">
+                    
                     <label className="mt-3 h-6 text-sm font-normal leading-8 text-gray-500">Type de logements</label>
                         <div className="my-1 flex rounded border border-gray-200 bg-white p-1">
                             <input type="text"  name="typelogement" className="w-full appearance-none p-1 px-2 text-gray-800 outline-none" placeholder="Suites, Chambre Double..." onChange={ e=>handleinputchange(e,i)} />
