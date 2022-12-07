@@ -32,22 +32,25 @@ export default function AddPlanning() {
               <ListeHotels />
             </div>  
               <div className={styles.Prestation}>
-                <h2>Prestation</h2>
-                <div className={styles.Prestainput}>
-                  <input type="text" placeholder="Nom du prestation"/><br />
-                  <input type="text" placeholder="Prix du prestation"/>
-                    <select name="price">
-                      <option selected>Euro</option>
-                      <option selected>Ariary</option>
-                    </select><br />
-                </div>
-                <div className={styles.radioType}>
-                  <label htmlFor="typePrestation">
-                      <input type="radio" name="typePrestation" value="Single" />Single
-                      <input type="radio" name="typePrestation" value="Groupe" />Groupe
-                  </label>
-                </div> 
-            </div>
+                  <h2>Prestation</h2>
+                  <div className={styles.Prestainput}>
+                    <input type="text" placeholder="Nom du prestation"/><br />
+                    <input type="text" placeholder="Prix du prestation"/>
+                      <select name="price">
+                        <option selected>Euro</option>
+                        <option selected>Ariary</option>
+                      </select><br />
+                  </div>
+                  <div className={styles.radioType}>
+                    <label htmlFor="typePrestation">
+                        <input type="radio" name="typePrestation" value="Single" />Single
+                        <input type="radio" name="typePrestation" value="Groupe" />Groupe
+                    </label>
+                    <div className="py-5">
+                      <button className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white">Ajouter</button>
+                    </div>
+                  </div> 
+              </div>
           </div>
           <div className={styles.btn}>
             <button className="cursor-pointer rounded-xl border-2 border-slate-300 bg-white py-2 px-4 font-semibold uppercase text-slate-400 transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white">ANNULER</button>
