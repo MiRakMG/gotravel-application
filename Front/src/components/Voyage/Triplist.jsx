@@ -8,6 +8,7 @@ import { GoPlus } from "react-icons/go";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 
 const Triplist = () => {
+  
 
   const navigate = useNavigate();
   return (
