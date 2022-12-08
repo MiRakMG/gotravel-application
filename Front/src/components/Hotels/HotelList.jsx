@@ -1,7 +1,8 @@
 import React from "react";
 
 const HotelList = () => {
- 
+  
+
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4">

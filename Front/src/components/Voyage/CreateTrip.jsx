@@ -11,6 +11,7 @@ import Final from "./EtapeCreation/Etapes/Final";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaCreateVoyage } from "./Validation";
 
 const CreateTrip = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -30,7 +31,8 @@ const CreateTrip = () => {
   };
   
   const { register, handleSubmit } = useForm({
-    resolver: yupResolver(currentStep > 1 ? null : currentStep - 1),
+    mode: "onTouched",
+    resolver: yupResolver(schemaCreateVoyage),
   });
 
   const onClickConfirmButton = (data) => {
@@ -45,6 +47,7 @@ const CreateTrip = () => {
     // check if steps are within bounds
     newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
     handleSubmit(onClickConfirmButton)
+    
 
     // Post data in bdd onClickConfirmButton
     if (aboutBtn?.target.innerText === "CONFIRM") {
@@ -62,7 +65,6 @@ const CreateTrip = () => {
           <UseContextProvider>{displayStep(currentStep)}</UseContextProvider>
         </div>
       </div>
-
       {/* navigation button */}
       {currentStep !== steps.length && (
         <EtapeControl

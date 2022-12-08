@@ -5,10 +5,9 @@ import { maxDateInArray, minDateInArray } from "./searchDateClient";
 
 import styles from "./Table.module.scss";
 
-
-
 const Tables = () => {
   const { data, isLoading } = useGetAllClientsQuery();
+
   console.log(data)
   return (
     <table className={styles.table_container}>
