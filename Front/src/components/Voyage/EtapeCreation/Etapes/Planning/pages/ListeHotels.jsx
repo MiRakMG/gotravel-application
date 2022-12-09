@@ -9,6 +9,7 @@ function ListeHotels() {
       <thead>
         <tr>
           <th>Nom de l'hôtel</th>
+          <th>Saison</th>
           <th>Catégorie</th>
           <th>Type de logement</th>
           <th>Tarifs</th>
@@ -17,6 +18,13 @@ function ListeHotels() {
       <tbody>
         <tr>
           <td>Ibis Hôtel</td>
+            <td><select name="Saison">
+                    <option selected>Uni</option>
+                    <option selected>Haute</option>
+                    <option selected>Basse</option>
+                    <option selected>Moyenne</option>
+                </select>
+            </td>
             <td><select name="Categorie">
                     <option selected>Simple</option>
                     <option selected>Double</option>
@@ -35,6 +43,13 @@ function ListeHotels() {
         </tr>
         <tr>
         <td>Radison Blue</td>
+            <td><select name="Saison">
+                    <option selected>Uni</option>
+                    <option selected>Haute</option>
+                    <option selected>Basse</option>
+                    <option selected>Moyenne</option>
+                </select>
+            </td>
             <td><select name="Categorie">
                     <option selected>Simple</option>
                     <option selected>Double</option>
@@ -53,6 +68,13 @@ function ListeHotels() {
         </tr>
         <tr>
         <td>Carlton</td>
+            <td><select name="Saison">
+                    <option selected>Uni</option>
+                    <option selected>Haute</option>
+                    <option selected>Basse</option>
+                    <option selected>Moyenne</option>
+                </select>
+            </td>
             <td><select name="Categorie">
                     <option selected>Simple</option>
                     <option selected>Double</option>

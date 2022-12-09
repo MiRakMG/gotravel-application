@@ -9,6 +9,7 @@ import CreateTrip from './components/Voyage/CreateTrip';
 import CreateHotel from './components/Hotels/CreateHotel';
 
 import NavContext from './Context/NavContext';
+import Activites from './components/Activites/Activites';
 function App() {
   const [nav, setNav] = useState(false);
   const value = { nav, setNav};
@@ -24,6 +25,7 @@ function App() {
             <Route path='/hotels' element={<Hotels />} />
             <Route path='createTrip/*' element={<CreateTrip />} />
             <Route path='/createHotel' element={<CreateHotel />} />
+            <Route path='/activites' element={<Activites />} />
           </Routes>
         } />
       </NavContext.Provider>

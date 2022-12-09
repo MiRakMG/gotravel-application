@@ -42,7 +42,7 @@ export default function Client({ register }) {
           />
         </div>
       </div>
-      <button onClick={ajoutClient}>Test</button>
+      <button onClick={ajoutClient}></button>
     </div>
   );
 }

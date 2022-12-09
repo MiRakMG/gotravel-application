@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import useClickOutside from '../../../../../../Personalisation/ClickOutside'
 import styles from './AddPlanning.module.scss'
 import ListeHotels from './ListeHotels';
@@ -6,6 +7,7 @@ import ListeHotels from './ListeHotels';
 
 export default function AddPlanning() {
 
+  const navigate = useNavigate();
   const [isPlanningOpen,setisPlanningOpen] = useState(false);
   let domNode = useClickOutside(() => { setisPlanningOpen(false);
    });
@@ -27,6 +29,7 @@ export default function AddPlanning() {
           <div>
             <div className={styles.input}>
               <h2 >Trajet</h2> <input type="text" placeholder="Votre trajet aujourd'hui" />
+              <button className="cursor-pointer rounded-md bg-blue-900 mx-48 py-2 px-11 font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white" onClick={()=> navigate('/createHotel')}>Ajouter un hôtel</button>
             </div>
             <div className={styles.hotels}>
               <ListeHotels />
@@ -47,7 +50,7 @@ export default function AddPlanning() {
                         <input type="radio" name="typePrestation" value="Groupe" />Groupe
                     </label>
                     <div className="py-5">
-                      <button className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white">Ajouter</button>
+                      <button className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white">Ajouter au planning</button>
                     </div>
                   </div> 
               </div>
