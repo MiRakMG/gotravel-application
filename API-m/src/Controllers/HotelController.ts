@@ -4,6 +4,23 @@ import { Hotel } from "../entity/Hotel";
 
 export class HotelController {
 
+    public static async getAllHotels(req: Request, res: Response) 
+    {
+        const hotels = await AppDataSource.manager.find(Hotel, {
+            relations: {
+                prendre: {
+                    
+                },
+                content: {
+                    type: true,
+                    season: true
+                }
+            },
+        })
+
+        return res.json(hotels)
+    }
+
     public static async create(req: Request, res: Response) 
     {
         const client = await AppDataSource.manager.save(Hotel, {

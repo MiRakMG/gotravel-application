@@ -21,6 +21,6 @@ export class Contenir {
     @Column({name: "categorie", type: "enum", enum: ['Simple', 'Double', 'Triple', 'Quadruple']})
     category: string
 
-    @Column({name: "tarif", type: "integer"})
-    price: number
+    @Column({name: "tarif", type: "varchar", length: 20, nullable: false})
+    price: string
 }
