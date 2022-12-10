@@ -8,9 +8,6 @@ export class HotelController {
     {
         const hotels = await AppDataSource.manager.find(Hotel, {
             relations: {
-                prendre: {
-                    
-                },
                 content: {
                     type: true,
                     season: true
