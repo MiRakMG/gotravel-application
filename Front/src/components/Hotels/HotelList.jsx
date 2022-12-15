@@ -4,7 +4,16 @@ import styles from "./HotelList.module.scss";
 
 function HotelList() {
   const { data, isLoading, isError } = useGetAllHotelsQuery();
-  console.log(data);
+  
+  const { hotelsSearch } = useGetAllHotelsQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      hotelsSearch: data?.find(
+        (hotelsSearch) => hotelsSearch.name === "Le By Pass"
+      ),
+    }),
+  });
+  
+  console.log(hotelsSearch);
   return (
     <div>
       <table className={styles.table_container}>

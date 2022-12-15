@@ -1,6 +1,9 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useClickOutside from "../../../../../../Personalisation/ClickOutside";
+import { prestationSchema } from "../../../../Validation/prestation";
 import styles from "./AddPlanning.module.scss";
 import ListeHotels from "./ListeHotels";
 
@@ -8,13 +11,25 @@ export default function AddPlanning() {
   const navigate = useNavigate();
   const [isPlanningOpen, setisPlanningOpen] = useState(false);
   const [journey, setJourney] = useState("");
-  const [listPrestations,setListPrestations] = useState([])
+  const [listPrestations, setListPrestations] = useState([]);
 
   let domNode = useClickOutside(() => {
     setisPlanningOpen(false);
   });
 
-  
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    mode: "onTouched",
+    resolver: yupResolver(prestationSchema),
+  });
+
+  const addPrestation = (data) => {
+    console.log(data)
+    // setListPrestations((currentValue) => currentValue.push());
+  };
 
   return (
     <div>
@@ -57,24 +72,24 @@ export default function AddPlanning() {
             <div className={styles.Prestation}>
               <h2>Prestation</h2>
               <div className={styles.Prestainput}>
-                <input type="text" placeholder="Nom du prestation" />
+                <input type="text" placeholder="Nom du prestation" {...register('wording')}/>
                 <br />
-                <input type="text" placeholder="Prix du prestation" />
-                <select name="price">
-                  <option selected>Euro</option>
-                  <option selected>Ariary</option>
+                <input type="text" placeholder="Prix du prestation" {...register('price')}/>
+                <select {...register('value')}>
+                  <option value="eur">Euro</option>
+                  <option value="ar">Ariary</option>
                 </select>
                 <br />
               </div>
               <div className={styles.radioType}>
                 <label htmlFor="typePrestation">
-                  <input type="radio" name="typePrestation" value="Single" />
+                  <input type="radio" value="Single" {...register('type')}/>
                   Single
-                  <input type="radio" name="typePrestation" value="Groupe" />
+                  <input type="radio" value="Groupe" {...register('type')}/>
                   Groupe
                 </label>
                 <div className="py-5">
-                  <button className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white">
+                  <button on className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white">
                     Ajouter au planning
                   </button>
                 </div>

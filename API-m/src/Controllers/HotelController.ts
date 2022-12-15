@@ -18,6 +18,16 @@ export class HotelController {
         return res.json(hotels)
     }
 
+    public static async getByCity(req:Request,res: Response) {
+        const hotel = await AppDataSource.manager.find(Hotel,{
+            where: {
+                city: req.params.city
+            }
+        })
+
+        return res.status(200).json(hotel)
+    }
+
     public static async create(req: Request, res: Response) 
     {
         const client = await AppDataSource.manager.save(Hotel, {
