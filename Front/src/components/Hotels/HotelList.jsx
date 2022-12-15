@@ -51,60 +51,6 @@ function HotelList() {
                 <td></td>
               </tr>;
             })}
-          <tr>
-            <td>Radison Blue</td>
-            <td>
-              <select name="Saison">
-                <option selected>Uni</option>
-                <option selected>Haute</option>
-                <option selected>Basse</option>
-                <option selected>Moyenne</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Simple</option>
-                <option selected>Double</option>
-                <option selected>Triple</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Suite</option>
-                <option selected>Villa</option>
-                <option selected>Villa avec piscine</option>
-              </select>
-            </td>
-            <td>120$</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Carlton</td>
-            <td>
-              <select name="Saison">
-                <option selected>Uni</option>
-                <option selected>Haute</option>
-                <option selected>Basse</option>
-                <option selected>Moyenne</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Simple</option>
-                <option selected>Double</option>
-                <option selected>Triple</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Suite</option>
-                <option selected>Villa</option>
-                <option selected>Villa avec piscine</option>
-              </select>
-            </td>
-            <td>100$</td>
-            <td></td>
-          </tr>
         </tbody>
       </table>
     </div>
