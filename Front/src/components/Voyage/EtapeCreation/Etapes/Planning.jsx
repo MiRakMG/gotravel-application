@@ -1,13 +1,23 @@
 import React from "react";
-
-import MainPage from "./Planning/components/MainPage";
+import DaysBar from "./Planning/components/DaysBar";
+import DaysPage from "./Planning/components/DaysPage";
 
 
 export default function Planning() {
     return ( 
         
     <div>
-        <MainPage />
+        <div className="flex ">
+        {/* DaysBar*/}
+        <div className="flex-1 h-96 w-10">
+            <DaysBar />
+        </div>
+
+        {/* section*/}
+        <div className="flex-1">
+            <DaysPage />
+        </div>
+    </div>
     </div>
     )
 }

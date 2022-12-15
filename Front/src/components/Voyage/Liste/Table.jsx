@@ -6,7 +6,7 @@ import { maxDateInArray, minDateInArray } from "./searchDateClient";
 import styles from "./Table.module.scss";
 
 const Tables = () => {
-  const { data, isLoading } = useGetAllClientsQuery();
+  const { data, isLoading, isError } = useGetAllClientsQuery();
 
   console.log(data)
   return (
@@ -20,7 +20,7 @@ const Tables = () => {
         </tr>
       </thead>
       <tbody>
-        {!isLoading &&
+        {!isError && !isLoading &&
           data.map((client) => {
             const debutSejour = minDateInArray(client.prendre)
             const finSejour = maxDateInArray(client.prendre)

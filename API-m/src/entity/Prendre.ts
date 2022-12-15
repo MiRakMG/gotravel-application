@@ -2,6 +2,8 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Client } from "./Client";
 import { Date } from "./Date";
 import { Hotel } from "./Hotel";
+import { Saison } from "./Saison";
+import { Type } from "./Type";
 
 @Entity()
 export class Prendre {
@@ -18,9 +20,18 @@ export class Prendre {
     @ManyToOne(() => Date, (date) => date.date, {createForeignKeyConstraints: false})
     date: Date
 
+    @ManyToOne(()=> Saison, (saison) => saison)
+    saison: Saison
+
+    @ManyToOne(() => Type, (type) => type)
+    type : Type
+
     @Column({type: "varchar", length: 100})
     journey: string
 
     @Column({type: "varchar", length: 15})
     date_number: string
+
+    @Column({name: "categorie", type: "enum", enum: ['Simple', 'Double', 'Triple', 'Quadruple']})
+    category: string
 }
