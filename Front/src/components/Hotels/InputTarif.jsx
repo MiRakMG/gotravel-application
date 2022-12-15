@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 
-function InputTarif() {
+function InputTarif({errors, register}) {
   const [inputList, setinputList]= useState([{typelogement:'', categorie:'', tarif:''}]);
 
   const handleinputchange=(e, index)=>{
@@ -21,6 +21,7 @@ function InputTarif() {
   const handleaddclick=()=>{
     setinputList([...inputList, {saison:'', typelogement:'', categorie:'', tarif:''}]);
   }
+
   return (
     <Container>
      <div >
@@ -29,34 +30,46 @@ function InputTarif() {
             inputList.map( (x,i)=>{
               return(
               <div className="py-4">
-                <select name="saison">
-                        <option selected>Moyenne Saison</option>
-                        <option selected>Haute Saison</option>
-                        <option selected>Basse Saison</option>
-                        <option selected>Uni Saison</option>
+                <select {...register("code_saison")}>
+                        <option value="Moyenne Saison">Moyenne Saison</option>
+                        <option value="Haute Saison">Haute Saison</option>
+                        <option value="Basse Saison">Basse Saison</option>
+                        <option value="Uni Saison">Uni Saison</option>
                 </select>
                 <div className="py-4">
                     
                     <label className="mt-3 h-6 text-sm font-normal leading-8 text-gray-500">Type de logements</label>
                         <div className="my-1 flex rounded border border-gray-200 bg-white p-1">
-                            <input type="text"  name="typelogement" className="w-full appearance-none p-1 px-2 text-gray-800 outline-none" placeholder="Suites, Chambre Double..." onChange={ e=>handleinputchange(e,i)} />
+                            <input 
+                            {...register("wording_type")} 
+                            className="w-full appearance-none p-1 px-2 text-gray-800 outline-none" placeholder="Suites, Chambre Double..." onChange={ e=>handleinputchange(e,i)} />
                         </div>
+                        <p className='text-red-500'>{errors.wording_type?.message}</p>
                </div>
                <div>
                     <label className="mt-3 h-6 text-sm font-normal leading-8 text-gray-500">Catégorie</label>
-                        <div className="my-1 flex rounded border border-gray-200 bg-white p-1">    
-                            <input type="text"  name="categorie" className="w-full appearance-none p-1 px-2 text-gray-800 outline-none" placeholder="Single, Double..." onChange={ e=>handleinputchange(e,i) }/>
-                        </div>
+                        <div className="py-4">    
+                            <select {...register("category")}>
+                              <option value="Simple">Simple</option>
+                              <option value="Double">Double</option>
+                              <option value="Triple">Triple</option>
+                              <option value="Quadruple">Quadruple</option>
+                            </select >
+                            </div>
+                        <p className='text-red-500'>{errors.category?.message}</p>
                </div>
                <div>
                     <label className="mt-3 h-6 text-sm font-normal leading-8 text-gray-500">Tarif</label>
                         <div className="my-1 flex rounded border border-gray-200 bg-white p-1">     
-                            <input type="text"  name="tarif" className="w-full appearance-none p-1 px-2 text-gray-800 outline-none" onChange={ e=>handleinputchange(e,i) }/>
+                            <input
+                            {...register("price")} 
+                            className="w-full appearance-none p-1 px-2 text-gray-800 outline-none" onChange={ e=>handleinputchange(e,i) }/>
                             <select name="" id="">
                               <option selected>Euro</option>
                               <option selected>Ariary</option>
                             </select>
                         </div>
+                        <p className='text-red-500'>{errors.price?.message}</p>
                </div>
                <div>
                {

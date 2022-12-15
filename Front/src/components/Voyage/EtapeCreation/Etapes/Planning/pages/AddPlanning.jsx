@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useClickOutside from "../../../../../../Personalisation/ClickOutside";
-import { prestationSchema } from "../../../../Validation/prestation";
+import { prestationSchema } from "../../../../../Validation/prestation";
 import styles from "./AddPlanning.module.scss";
 import ListeHotels from "./ListeHotels";
 
