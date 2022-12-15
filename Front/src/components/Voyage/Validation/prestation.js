@@ -6,3 +6,4 @@ export const prestationSchema = Yup.object().shape({
     value: Yup.string(),
     type: Yup.string()
 })
+

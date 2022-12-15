@@ -7,29 +7,34 @@ import { prestationSchema } from "../../../../Validation/prestation";
 import styles from "./AddPlanning.module.scss";
 import ListeHotels from "./ListeHotels";
 
-export default function AddPlanning() {
+export default function AddPlanning(p) {
   const navigate = useNavigate();
   const [isPlanningOpen, setisPlanningOpen] = useState(false);
   const [journey, setJourney] = useState("");
   const [listPrestations, setListPrestations] = useState([]);
 
+
   let domNode = useClickOutside(() => {
     setisPlanningOpen(false);
   });
-
   const {
     handleSubmit,
     register,
     formState: { errors },
+    setValue
   } = useForm({
     mode: "onTouched",
     resolver: yupResolver(prestationSchema),
   });
 
-  const addPrestation = (data) => {
+  const addPrestation = async (data) => {
     console.log(data)
-    // setListPrestations((currentValue) => currentValue.push());
+    const newData =[...listPrestations]
+    newData.push(data)
+    setListPrestations(newData);
   };
+
+  console.log(listPrestations)
 
   return (
     <div>
@@ -67,15 +72,23 @@ export default function AddPlanning() {
               </button>
             </div>
             <div className={styles.hotels}>
-              <ListeHotels />
+              <ListeHotels/>
             </div>
-            <div className={styles.Prestation}>
+            <div className={styles.Prestation} >
               <h2>Prestation</h2>
               <div className={styles.Prestainput}>
-                <input type="text" placeholder="Nom du prestation" {...register('wording')}/>
+                <input
+                  type="text"
+                  placeholder="Nom du prestation"
+                  {...register("wording")}
+                />
                 <br />
-                <input type="text" placeholder="Prix du prestation" {...register('price')}/>
-                <select {...register('value')}>
+                <input
+                  type="text"
+                  placeholder="Prix du prestation"
+                  {...register("price")}
+                />
+                <select {...register("value")}>
                   <option value="eur">Euro</option>
                   <option value="ar">Ariary</option>
                 </select>
@@ -83,13 +96,16 @@ export default function AddPlanning() {
               </div>
               <div className={styles.radioType}>
                 <label htmlFor="typePrestation">
-                  <input type="radio" value="Single" {...register('type')}/>
+                  <input type="radio" value="Single" {...register("type")} />
                   Single
-                  <input type="radio" value="Groupe" {...register('type')}/>
+                  <input type="radio" value="Groupe" {...register("type")} />
                   Groupe
                 </label>
                 <div className="py-5">
-                  <button on className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white">
+                  <button
+                    onClick={handleSubmit(addPrestation)}
+                    className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white"
+                  >
                     Ajouter au planning
                   </button>
                 </div>

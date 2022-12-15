@@ -3,7 +3,8 @@ import { useAddClientMutation } from "../../../../Services/clients";
 
 export default function Client({ register, errors }) {
   const [addClient] = useAddClientMutation();
-
+  const test = [1,4,3,4,5,2,8]
+  
   const ajoutClient = () => {
     addClient({
       name: "John Doe",
