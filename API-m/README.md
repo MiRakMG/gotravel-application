@@ -76,6 +76,10 @@ GET /prestations
 ```
 
 ```
+GET /hotels
+```
+
+```
 GET /prestations/:codeCli
 ```
 
