@@ -11,7 +11,7 @@ import Final from "./EtapeCreation/Etapes/Final";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validationCreateVoyage } from "./Validation";
+import { validationCreateVoyage } from "../Validation/validationCreateVoyage";
 
 const CreateTrip = () => {
   const [currentStep, setCurrentStep] = useState(1);

@@ -1,19 +1,9 @@
 import React from "react";
-import { useGetAllHotelsQuery } from "../../Services/hotels";
 import styles from "./HotelList.module.scss";
 
-function HotelList() {
-  const { data, isLoading, isError } = useGetAllHotelsQuery();
+function HotelList({data}) {
   
-  const { hotelsSearch } = useGetAllHotelsQuery(undefined, {
-    selectFromResult: ({ data }) => ({
-      hotelsSearch: data?.find(
-        (hotelsSearch) => hotelsSearch.name === "Le By Pass"
-      ),
-    }),
-  });
-  
-  console.log(hotelsSearch);
+
   return (
     <div>
       <table className={styles.table_container}>
@@ -27,10 +17,9 @@ function HotelList() {
           </tr>
         </thead>
         <tbody>
-          {!isError &&
-            !isLoading &&
-            data.map((hotel) => {
-              const { code_hotel, name, content } = hotel;
+          {
+            data?.map((hotel) => {
+
               return (
                 <tr key={hotel.code_hotel}>
                   <td>{hotel.name}</td>

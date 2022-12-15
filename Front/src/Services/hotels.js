@@ -15,10 +15,14 @@ const hotelsApi = baseRoute.injectEndpoints({
               };
             },
           }),
+        getHotelsByCity: builder.query({
+          query: (city) => `hotels/${city}`
+        })
     })
 });
 
 export const {
     useGetAllHotelsQuery,
+    useGetHotelsByCityQuery,
     useAddHotelsMutation
 } = hotelsApi
