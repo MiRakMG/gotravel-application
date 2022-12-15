@@ -8,10 +8,13 @@ export default function AddPlanning() {
   const navigate = useNavigate();
   const [isPlanningOpen, setisPlanningOpen] = useState(false);
   const [journey, setJourney] = useState("");
+  const [listPrestations,setListPrestations] = useState([])
 
   let domNode = useClickOutside(() => {
     setisPlanningOpen(false);
   });
+
+  
 
   return (
     <div>

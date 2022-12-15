@@ -21,90 +21,38 @@ function HotelList() {
           {!isError &&
             !isLoading &&
             data.map((hotel) => {
-              const {code_hotel,name,content} = hotel
-              return <tr key={hotel.code_hotel}>
-                <td>{hotel.name}</td>
-                <td>
-                  <select name="Saison">
-                    <option selected>Uni</option>
-                    <option selected>Haute</option>
-                    <option selected>Basse</option>
-                    <option selected>Moyenne</option>
-                  </select>
-                </td>
-                <td>
-                  <select name="Categorie">
-                    <option selected>Simple</option>
-                    <option>Double</option>
-                    <option>Triple</option>
-                    <option>Quadruple</option>
-                  </select>
-                </td>
-                <td>
-                  <select name="Type">
-                    <option selected>Suite</option>
-                    <option>Villa</option>
-                    <option>Villa avec piscine</option>
-                  </select>
-                </td>
-                <td>90$</td>
-                <td></td>
-              </tr>;
+              const { code_hotel, name, content } = hotel;
+              return (
+                <tr key={hotel.code_hotel}>
+                  <td>{hotel.name}</td>
+                  <td>
+                    <select name="Saison">
+                      <option selected>Uni</option>
+                      <option selected>Haute</option>
+                      <option selected>Basse</option>
+                      <option selected>Moyenne</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="Categorie">
+                      <option selected>Simple</option>
+                      <option>Double</option>
+                      <option>Triple</option>
+                      <option>Quadruple</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select name="Type">
+                      <option selected>Suite</option>
+                      <option>Villa</option>
+                      <option>Villa avec piscine</option>
+                    </select>
+                  </td>
+                  <td>90$</td>
+                  <td></td>
+                </tr>
+              );
             })}
-          <tr>
-            <td>Radison Blue</td>
-            <td>
-              <select name="Saison">
-                <option selected>Uni</option>
-                <option selected>Haute</option>
-                <option selected>Basse</option>
-                <option selected>Moyenne</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Simple</option>
-                <option selected>Double</option>
-                <option selected>Triple</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Suite</option>
-                <option selected>Villa</option>
-                <option selected>Villa avec piscine</option>
-              </select>
-            </td>
-            <td>120$</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Carlton</td>
-            <td>
-              <select name="Saison">
-                <option selected>Uni</option>
-                <option selected>Haute</option>
-                <option selected>Basse</option>
-                <option selected>Moyenne</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Simple</option>
-                <option selected>Double</option>
-                <option selected>Triple</option>
-              </select>
-            </td>
-            <td>
-              <select name="Categorie">
-                <option selected>Suite</option>
-                <option selected>Villa</option>
-                <option selected>Villa avec piscine</option>
-              </select>
-            </td>
-            <td>100$</td>
-            <td></td>
-          </tr>
         </tbody>
       </table>
     </div>
