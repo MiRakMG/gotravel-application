@@ -32,6 +32,6 @@ export class Prendre {
     @Column({type: "varchar", length: 15})
     date_number: string
 
-    @Column({name: "categorie", type: "enum", enum: ['Simple', 'Double', 'Triple', 'Quadruple']})
+    @Column({name: "categorie", type: "varchar", length: 50, nullable: false})
     category: string
 }
