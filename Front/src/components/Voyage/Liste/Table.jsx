@@ -1,11 +1,12 @@
-import React from "react";
 import { useGetAllClientsQuery } from "../../../Services/clients";
 import { statusVoyage } from "./detectionStatusVoyage";
 import { maxDateInArray, minDateInArray } from "./searchDateClient";
+import Details from "./Details";
 
 import styles from "./Table.module.scss";
 
 const Tables = () => {
+
   const { data, isLoading, isError } = useGetAllClientsQuery();
 
   console.log(data)
@@ -32,8 +33,10 @@ const Tables = () => {
               <td>{finSejour}</td>
               <td>{status}</td>
               <td>
-                <button>Modifier</button>
+                <Details/>
+                {/* <button onClick={handleClickDetails}>Détails</button> */}
               </td>
+              
             </tr>
 })}
       </tbody>
