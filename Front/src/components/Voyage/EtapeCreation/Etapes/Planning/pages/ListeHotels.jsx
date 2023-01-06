@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import { useGetAllHotelsQuery } from "../../../../../../Services/hotels";
 import styles from "./ListeHotels.module.scss";
 
-function ListeHotels() {
+function ListeHotels({
+  seasonChoice,
+  categoryChoice,
+  typeChoice,
+  setHotelChoice,
+  setSeasonChoice,
+  setCategoryChoice,
+  setTypeChoice,
+}) {
   const { data, isSuccess } = useGetAllHotelsQuery();
-  const [] = useState({})
 
   return (
     <div>
@@ -41,29 +48,62 @@ function ListeHotels() {
                 <tr key={code_hotel}>
                   <td>{name}</td>
                   <td>
-                    {listSeason.length > 0 ? <select name="Saison" defaultValue={listSeason[0]}>
-                      {listSeason?.map((season, id) => (
-                        <option key={id} value={season}>{season}</option>
-                      )) }
-                    </select> : <p>Aucun saison</p>}
+                    {listSeason.length > 0 ? (
+                      <select
+                        name="Saison"
+                        value={seasonChoice}
+                        onChange={(e) => setSeasonChoice(e.target.value)}
+                      >
+                        <option value="">Selectionnnez la saison ...</option>
+                        {listSeason?.map((season, id) => (
+                          <option key={id} value={season}>
+                            {season}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <p>Aucun saison</p>
+                    )}
                   </td>
                   <td>
-                    <select name="Categorie" defaultValue="Simple">
-                      <option value="Simple" selected>Simple</option>
+                    <select
+                      name="Categorie"
+                      value={categoryChoice}
+                      onChange={(e) => setCategoryChoice(e.target.value)}
+                    >
+                      <option value="">Selectionnnez la catégorie ...</option>
+                      <option value="Simple">
+                        Simple
+                      </option>
                       <option value="Double">Double</option>
                       <option value="Triple">Triple</option>
                       <option value="Quadruple">Quadruple</option>
                     </select>
                   </td>
                   <td>
-                    {listType.length > 0 ? <select name="Categorie" defaultValue={listType[0].code_type}>
-                      {listType?.map((type,id) => <option key={id} value={type.code_type}>{type.wording_type}</option>)}
-                    </select> : <p>Aucun type</p>}
+                    {listType.length > 0 ? (
+                      <select
+                        name="Type"
+                        value={typeChoice}
+                        onChange={(e) => setTypeChoice(e.target.value)}
+                      >
+                        <option value="">Selectionnnez le type ...</option>
+                        {listType?.map((type, id) => (
+                          <option key={id} value={type.code_type}>
+                            {type.wording_type}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <p>Aucun type</p>
+                    )}
                   </td>
                   <td>{city}</td>
                   {/* <td>90$</td> */}
                   <td>
-                    <button>Ajouter</button>
+                    <button onClick={() => setHotelChoice(code_hotel)}>
+                      Ajouter
+                    </button>
                   </td>
                 </tr>
               );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Etape from "./EtapeCreation/Etape";
 import EtapeControl from "./EtapeCreation/EtapeControl";
@@ -12,11 +12,23 @@ import Final from "./EtapeCreation/Etapes/Final";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationCreateVoyage } from "../Validation/validationCreateVoyage";
+import { useAddClientMutation } from "../../Services/clients";
+import { useAddPrendreHotelMutation } from "../../Services/createHotelsApi";
 
 const CreateTrip = () => {
+  const [addClient, { data: dataResultClient, isSuccess: SuccessClient }] =
+    useAddClientMutation();
+  const [addPrendreHotel] = useAddPrendreHotelMutation();
+
   const [currentStep, setCurrentStep] = useState(1);
   const [dataClient, setDataClient] = useState({});
+
   const [dateVoyage, setDateVoyage] = useState({});
+
+  const [completePlanning, setCompletePlanning] = useState(false);
+
+  // Data structured
+  const [prendre, setPrendre] = useState([]);
 
   const steps = ["Client", "Description du voyage", "Planning", "Final"];
 
@@ -24,6 +36,7 @@ const CreateTrip = () => {
     handleSubmit,
     register,
     formState: { errors, isValid },
+    getValues,
   } = useForm({
     mode: "onTouched",
     resolver: yupResolver(
@@ -41,7 +54,13 @@ const CreateTrip = () => {
       case 2:
         return <DescriptionTrip register={register} errors={errors} />;
       case 3:
-        return <Planning />;
+        return (
+          <Planning
+            dateVoyage={dateVoyage}
+            setCompletePlanning={setCompletePlanning}
+            setPrendre={setPrendre}
+          />
+        );
       case 4:
         return <Final />;
       default:
@@ -52,7 +71,7 @@ const CreateTrip = () => {
     setDateVoyage({ dateStart: data?.dateStart, dateFin: data?.dateFin });
   };
 
-  const handleClick = (direction, aboutBtn = null) => {
+  const handleClick = async (direction, aboutBtn = null) => {
     let newStep = currentStep;
     handleSubmit(onClickNextButon)();
     // Verify if the currentStep form is valid
@@ -63,10 +82,22 @@ const CreateTrip = () => {
 
       // Post data in bdd onClickConfirmButton
       if (aboutBtn?.target.innerText === "CONFIRM") {
-        console.log("Confirmation");
+        await addClient(dataClient);
       }
     }
   };
+
+  useEffect(() => {
+    console.log(SuccessClient);
+    if (SuccessClient === true) {
+      const { code_cli } = dataResultClient;
+      // Add prendre
+      prendre?.forEach(async (prendreItem) => {
+        prendreItem.client = code_cli;
+        await addPrendreHotel(prendreItem);
+      });
+    }
+  }, [SuccessClient]);
 
   return (
     <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-4/5">
@@ -79,7 +110,7 @@ const CreateTrip = () => {
         </div>
       </div>
       {/* navigation button */}
-      {currentStep !== steps.length && (
+      {(currentStep < 3 || completePlanning) && currentStep !== 4 && (
         <EtapeControl
           handleClick={handleClick}
           currentStep={currentStep}

@@ -1,49 +1,67 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useClickOutside from "../../../../../../Personalisation/ClickOutside";
-import { prestationSchema } from "../../../../../Validation/prestation";
 import styles from "./AddPlanning.module.scss";
 import ListeHotels from "./ListeHotels";
 
-export default function AddPlanning(p) {
+export default function AddPlanning({
+  dateSelected,
+  isPlanningOpen,
+  setisPlanningOpen,
+  handleAddClick,
+  setPrendre,
+}) {
   const navigate = useNavigate();
-  const [isPlanningOpen, setisPlanningOpen] = useState(false);
   const [journey, setJourney] = useState("");
+  const [dataPrestation, setDataPrestation] = useState({
+    wording: "",
+    price: "",
+    type: "",
+    value: "",
+  });
   const [listPrestations, setListPrestations] = useState([]);
+  // Choice in listHOtels
+  const [hotelChoice, setHotelChoice] = useState("");
+  const [seasonChoice, setSeasonChoice] = useState("");
+  const [categoryChoice, setCategoryChoice] = useState("");
+  const [typeChoice, setTypeChoice] = useState("");
 
+  const listTest = [
+    { wording: "test", price: "1000Ar", type: "Single" },
+    { wording: "test2", price: "1000Eur", type: "Groupe" },
+  ];
 
   let domNode = useClickOutside(() => {
     setisPlanningOpen(false);
   });
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    setValue
-  } = useForm({
-    mode: "onTouched",
-    resolver: yupResolver(prestationSchema),
-  });
 
-  const addPrestation = async (data) => {
-    console.log(data)
-    const newData =[...listPrestations]
-    newData.push(data)
-    setListPrestations(newData);
+  const onChangeDatePrestation = ({ name, value }) => {
+    setDataPrestation((prevValue) => ({ ...prevValue, [name]: value }));
   };
 
-  console.log(listPrestations)
+  const handleValidatePlanning = () => {
+    console.log("Validate planning");
+    setisPlanningOpen(false);
+    handleAddClick();
+
+    const prendre = {
+      hotel: hotelChoice,
+      date: new Date(dateSelected?.date).toISOString().split("T")[0],
+      journey,
+      date_number: dateSelected.day_number,
+      category: categoryChoice,
+      season: seasonChoice,
+      type : typeChoice
+    };
+    setPrendre((prevState) => [...prevState, prendre]);
+  };
+
+  const addPrestation = () => {
+    setListPrestations([...listPrestations, dataPrestation]);
+  };
 
   return (
     <div>
-      <button
-        onClick={() => setisPlanningOpen(true)}
-        className="border border-slate-300 p-2 rounded-lg text-slate-500 hover:text-slate-900 active:bg-slate-200 focus:outline-none focus:ring focus:ring-slate-300"
-      >
-        + Ajouter un planning
-      </button>
       <div
         className={`${styles.submenu_container} ${
           isPlanningOpen ? styles.submenu_container_active : ""
@@ -72,23 +90,39 @@ export default function AddPlanning(p) {
               </button>
             </div>
             <div className={styles.hotels}>
-              <ListeHotels/>
+              <ListeHotels
+                setHotelChoice={setHotelChoice}
+                seasonChoice={seasonChoice}
+                setSeasonChoice={setSeasonChoice}
+                categoryChoice={categoryChoice}
+                setCategoryChoice={setCategoryChoice}
+                typeChoice={typeChoice}
+                setTypeChoice={setTypeChoice}
+              />
             </div>
-            <div className={styles.Prestation} >
+            <div className={styles.Prestation}>
               <h2>Prestation</h2>
               <div className={styles.Prestainput}>
                 <input
                   type="text"
                   placeholder="Nom du prestation"
-                  {...register("wording")}
+                  name="wording"
+                  value={dataPrestation.wording}
+                  onChange={(e) => onChangeDatePrestation(e.target)}
                 />
                 <br />
                 <input
                   type="text"
                   placeholder="Prix du prestation"
-                  {...register("price")}
+                  name="price"
+                  value={dataPrestation.price}
+                  onChange={(e) => onChangeDatePrestation(e.target)}
                 />
-                <select {...register("value")}>
+                <select
+                  name="value"
+                  value={dataPrestation.value}
+                  onChange={(e) => onChangeDatePrestation(e.target)}
+                >
                   <option value="eur">Euro</option>
                   <option value="ar">Ariary</option>
                 </select>
@@ -96,14 +130,24 @@ export default function AddPlanning(p) {
               </div>
               <div className={styles.radioType}>
                 <label htmlFor="typePrestation">
-                  <input type="radio" value="Single" {...register("type")} />
+                  <input
+                    type="radio"
+                    value="Single"
+                    name="type"
+                    onChange={(e) => onChangeDatePrestation(e.target)}
+                  />
                   Single
-                  <input type="radio" value="Groupe" {...register("type")} />
+                  <input
+                    type="radio"
+                    value="Groupe"
+                    name="type"
+                    onChange={(e) => onChangeDatePrestation(e.target)}
+                  />
                   Groupe
                 </label>
                 <div className="py-5">
                   <button
-                    onClick={handleSubmit(addPrestation)}
+                    onClick={addPrestation}
                     className="cursor-pointer rounded-lg bg-red-600 py-2 px-4 font-normal text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white"
                   >
                     Ajouter au planning
@@ -117,7 +161,7 @@ export default function AddPlanning(p) {
               ANNULER
             </button>
             <button
-              onClick={() => setisPlanningOpen(false)}
+              onClick={() => handleValidatePlanning()}
               className="cursor-pointer rounded-lg bg-green-500 py-2 px-11 font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-slate-700 hover:text-white"
             >
               OK
