@@ -29,6 +29,7 @@ const CreateTrip = () => {
 
   // Data structured
   const [prendre, setPrendre] = useState([]);
+  const [listPrestations, setListPrestations] = useState([]);
 
   const steps = ["Client", "Description du voyage", "Planning", "Final"];
 
@@ -59,6 +60,7 @@ const CreateTrip = () => {
             dateVoyage={dateVoyage}
             setCompletePlanning={setCompletePlanning}
             setPrendre={setPrendre}
+            setListPrestations={setListPrestations}
           />
         );
       case 4:
@@ -92,12 +94,16 @@ const CreateTrip = () => {
     if (SuccessClient === true) {
       const { code_cli } = dataResultClient;
       // Add prendre
-      prendre?.forEach(async (prendreItem) => {
+      console.log("Add prendre")
+      prendre?.forEach((prendreItem) => {
         prendreItem.client = code_cli;
-        await addPrendreHotel(prendreItem);
+        console.log(prendreItem)
+        addPrendreHotel(prendreItem);
       });
     }
   }, [SuccessClient]);
+
+  console.log(listPrestations)
 
   return (
     <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-4/5">

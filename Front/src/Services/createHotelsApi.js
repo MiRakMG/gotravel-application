@@ -5,7 +5,7 @@ const createHotelsApi = baseRoute.injectEndpoints({
         addPrendreHotel : builder.mutation({
             query(body) {
                 return {
-                    url: "",
+                    url: "prendre",
                     method: "POST",
                     body,
                 }

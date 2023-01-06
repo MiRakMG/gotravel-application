@@ -10,26 +10,22 @@ export default function AddPlanning({
   setisPlanningOpen,
   handleAddClick,
   setPrendre,
+  setListPrestations,
 }) {
   const navigate = useNavigate();
   const [journey, setJourney] = useState("");
   const [dataPrestation, setDataPrestation] = useState({
     wording: "",
     price: "",
-    type: "",
-    value: "",
+    value: "Ar",
+    type: "Single",
+    date: new Date(dateSelected?.date).toISOString().split("T")[0],
   });
-  const [listPrestations, setListPrestations] = useState([]);
   // Choice in listHOtels
   const [hotelChoice, setHotelChoice] = useState("");
   const [seasonChoice, setSeasonChoice] = useState("");
   const [categoryChoice, setCategoryChoice] = useState("");
   const [typeChoice, setTypeChoice] = useState("");
-
-  const listTest = [
-    { wording: "test", price: "1000Ar", type: "Single" },
-    { wording: "test2", price: "1000Eur", type: "Groupe" },
-  ];
 
   let domNode = useClickOutside(() => {
     setisPlanningOpen(false);
@@ -48,16 +44,23 @@ export default function AddPlanning({
       hotel: hotelChoice,
       date: new Date(dateSelected?.date).toISOString().split("T")[0],
       journey,
-      date_number: dateSelected.day_number,
+      date_number: "day " + dateSelected.day_number,
       category: categoryChoice,
-      season: seasonChoice,
-      type : typeChoice
+      saison: seasonChoice,
+      type: parseInt(typeChoice),
     };
     setPrendre((prevState) => [...prevState, prendre]);
   };
 
   const addPrestation = () => {
-    setListPrestations([...listPrestations, dataPrestation]);
+    setListPrestations((prevState) => [...prevState, dataPrestation]);
+    setDataPrestation({
+      wording: "",
+      price: "",
+      value: "Ar",
+      type: "Single",
+      date: new Date(dateSelected?.date).toISOString().split("T")[0],
+    });
   };
 
   return (
