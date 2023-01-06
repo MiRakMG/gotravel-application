@@ -12,7 +12,7 @@ function ListeHotels({
   setTypeChoice,
 }) {
   const { data, isSuccess } = useGetAllHotelsQuery();
-
+  console.log(data)
   return (
     <div>
       <h2>Hôtel</h2>
@@ -89,8 +89,8 @@ function ListeHotels({
                       >
                         <option value="">Selectionnnez le type ...</option>
                         {listType?.map((type, id) => (
-                          <option key={id} value={type.code_type}>
-                            {type.wording_type}
+                          <option key={id} value={type?.code_type}>
+                            {type?.wording_type}
                           </option>
                         ))}
                       </select>

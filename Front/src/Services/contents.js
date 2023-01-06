@@ -2,6 +2,12 @@ import { baseRoute } from "./baseRoute";
 
 const contenirApi = baseRoute.injectEndpoints({
     endpoints: (builder) => ({
+      getPrestationByFaire: builder.query({
+        query: ({id}) => `contenir/${id}`,
+        providesTags: (result, error, id) => [
+            { type: "Faire", id },
+          ],
+      }),
     postContent: builder.mutation({
         query(body) {
           return {
@@ -15,5 +21,6 @@ const contenirApi = baseRoute.injectEndpoints({
 })
 
 export const {
+    useGetPrestationByFaireQuery,
     usePostContentMutation
 } = contenirApi

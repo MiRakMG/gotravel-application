@@ -2,6 +2,12 @@ import { baseRoute } from "./baseRoute";
 
 const createHotelsApi = baseRoute.injectEndpoints({
     endpoints: (builder) => ({
+        getPrendreById: builder.query({
+            query: ({id}) => `prendre/${id}`,
+            providesTags: (result, error, id) => [
+                { type: "Prendre", id },
+              ],
+          }),
         addPrendreHotel : builder.mutation({
             query(body) {
                 return {
@@ -53,6 +59,7 @@ const createHotelsApi = baseRoute.injectEndpoints({
 });
 
 export const {
+    useGetPrendreByIdQuery,
     useAddPrendreHotelMutation,
     useAddSaisonsMutation,
     useAddTypeslogementsMutation,

@@ -1,4 +1,4 @@
-import {baseRoute} from "./baseRoute"
+import { baseRoute } from "./baseRoute";
 const prestationApi = baseRoute.injectEndpoints({
   endpoints: (builder) => ({
     getAllPrestations: builder.query({
@@ -26,14 +26,11 @@ const prestationApi = baseRoute.injectEndpoints({
       invalidatesTags: [{ type: "Prestations", code_cli: "LIST" }],
     }),
     getPrestation: builder.query({
-      query: ({code_cli}) => `prestations/${code_cli}`,
+      query: ({ code_cli }) => `prestations/${code_cli}`,
       providesTags: (result, error, code_cli) => [
         { type: "Prestations", code_cli },
       ],
     }),
-    getPrestationByWordingPrice: builder.query({
-      query: ({wording,price}) => `prestations/${wording}/${price}'`
-    })
   }),
 });
 
@@ -41,5 +38,4 @@ export const {
   useGetAllPrestationsQuery,
   useAddPrestationMutation,
   useGetPrestationQuery,
-  useGetPrestationByWordingPriceQuery
 } = prestationApi;

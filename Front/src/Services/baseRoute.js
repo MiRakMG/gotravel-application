@@ -6,6 +6,6 @@ export const baseRoute = createApi({
   keepUnusedDataFor: 5,
   refetchOnMountOrArgChange: 30,
   refetchOnReconnect: true,
-  tagTypes: ["Prestations"],
+  tagTypes: ["Prestations","Prendre","Faire"],
   endpoints: () => ({}),
 });

@@ -33,7 +33,7 @@ const Tables = () => {
               <td>{finSejour}</td>
               <td>{status}</td>
               <td>
-                <Details/>
+                <Details code_cli={client.code_cli}/>
                 {/* <button onClick={handleClickDetails}>Détails</button> */}
               </td>
               

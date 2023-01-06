@@ -4,7 +4,7 @@ import styles from "./Details.module.scss"
 import {useState} from "react"
 import ListsDay from './ListsDay';
 
-function Details() {
+function Details({code_cli}) {
     const [isDetailsOpen, setisDetailsOpen] = useState(false);
     let domNode = useClickOutside(() => { 
         setisDetailsOpen(false)
@@ -23,7 +23,7 @@ function Details() {
                 <div>
                     <div>
                         <h3>Details du voyage</h3>
-                        <ListsDay/>
+                        <ListsDay code_cli={code_cli}/>
                     </div>
                         <h1>Total par pax :</h1>
                 </div>
