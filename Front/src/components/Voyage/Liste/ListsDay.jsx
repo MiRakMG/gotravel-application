@@ -3,21 +3,20 @@ import { useGetPrestationQuery } from "../../../Services/prestations";
 import { useGetPrendreByIdQuery } from "../../../Services/createHotelsApi";
 import AboutHotel from "./AboutHotel";
 import AboutPrestation from "./AboutPrestation";
+import stylesTable from './ListsDay.module.scss'
 
-export default function ListsDay({ code_cli }) {
+export default function ListsDay({ code_cli,setPax }) {
   const { data, isSuccess } = useGetPrestationQuery({ code_cli });
-
-  isSuccess && console.log(data);
+  console.log(data)
   return (
-    <>
+    <div  className={stylesTable.container}>
       {data && Object.keys(data).length > 0 && data["prendre"].map((item) => 
         <div key={item.id}>
           <h1>{item?.date_number}</h1>
           <p>Voyage: {item?.journey}</p>
-          <div>
+          <div className={stylesTable.hotels}>
             <h1>Hotels</h1>
-            <div>
-              <table>
+              <table  className={stylesTable.detailsHotels}>
                 <thead>
                   <tr>
                     <th>Nom de l'hôtel</th>
@@ -28,10 +27,11 @@ export default function ListsDay({ code_cli }) {
                   </tr>
                 </thead>
                 <tbody>
-                  <AboutHotel id={item.id}/>
+                  <AboutHotel id={item.id} setPax={setPax} numberClient={data["number"]}/>
                 </tbody>
               </table>
             </div>
+            <div  className={stylesTable.prestations}>
             <h2> Listes des préstations</h2>
             <table>
               <thead>
@@ -43,13 +43,13 @@ export default function ListsDay({ code_cli }) {
               <tbody>
                 {item.date.faire.map(itemFaire => {
                   console.log(itemFaire)
-                  return <AboutPrestation id={itemFaire.id}/>
+                  return <AboutPrestation id={itemFaire.id}  setPax={setPax} numberClient={data["number"]}/>
 })}
               </tbody>
             </table>
-          </div>
+            </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

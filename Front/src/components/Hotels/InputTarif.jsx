@@ -18,7 +18,7 @@ function InputTarif({ setinputList, inputList }) {
   const handleaddclick = () => {
     setinputList([
       ...inputList,
-      { wording_type: "", category: "", price: "", code_saison: "" },
+      { wording_type: "", category: "", price: "", code_saison: "", value:"" },
     ]);
   };
 
@@ -81,9 +81,9 @@ function InputTarif({ setinputList, inputList }) {
                       onChange={(e) => handleinputchange(e, i)}
                       className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
                     />
-                    <select name="" id="">
-                      <option selected>Euro</option>
-                      <option selected>Ariary</option>
+                    <select name="value" value={inputList[i].value} onChange={(e) => handleinputchange(e, i)}>
+                      {/* <option value="E">Euro</option> */}
+                      <option value="Ariary">Ariary</option>
                     </select>
                   </div>
                 </div>

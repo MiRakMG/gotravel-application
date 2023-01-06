@@ -17,7 +17,7 @@ export default function AddPlanning({
   const [dataPrestation, setDataPrestation] = useState({
     wording: "",
     price: "",
-    value: "Ar",
+    value: "Ariary",
     type: "Single",
   });
   // Choice in listHOtels
@@ -60,7 +60,7 @@ export default function AddPlanning({
     setDataPrestation({
       wording: "",
       price: "",
-      value: "Ar",
+      value: "Ariary",
       type: "Single",
     });
   };
@@ -128,8 +128,8 @@ export default function AddPlanning({
                   value={dataPrestation.value}
                   onChange={(e) => onChangeDatePrestation(e.target)}
                 >
-                  <option value="Eur">Euro</option>
-                  <option value="Ar">Ariary</option>
+                  {/* <option value="E">Euro</option> */}
+                  <option value="Ariary">Ariary</option>
                 </select>
                 <br />
               </div>

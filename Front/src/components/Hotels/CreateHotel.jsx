@@ -20,7 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 function CreateHotel() {
   const [inputList, setinputList] = useState([
-    { wording_type: "", category: "", price: "", code_saison: "" },
+    { wording_type: "", category: "", price: "", code_saison: "",value:"Ariary" },
   ]);
   // Mutations
   const [addHotels] = useAddHotelsMutation();
@@ -50,7 +50,7 @@ function CreateHotel() {
                 type: type.data.code_type || type.data[0].code_type,
                 season: inputItem.code_saison,
                 category: inputItem.category,
-                price: inputItem.price,
+                price: inputItem.price + inputItem.value,
               });
             }
           );
