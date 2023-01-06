@@ -22,17 +22,17 @@
     }
     
     button {   
-            color: white;
+            color: rgb(37, 36, 36);
+            border: 2px solid rgb(172, 172, 172);
             font-family: Poppins;
             letter-spacing: 1px;
-            background-color: rgb(231, 76, 84);
-            border: none;
             border-radius: 5px;
             padding: 0.5rem;
             margin: 0 0 5px 0rem;
 
             &:hover {
-                background-color: rgb(209, 29, 59);
+                color: white;
+                background-color: rgb(134, 134, 134);
             }
             }
 
