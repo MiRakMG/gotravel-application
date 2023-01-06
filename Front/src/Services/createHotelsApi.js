@@ -40,6 +40,15 @@ const createHotelsApi = baseRoute.injectEndpoints({
                 }
             }
         }),
+        addFairePrestation: builder.mutation({
+            query(body) {
+                return {
+                    url: "faire",
+                    method: "POST",
+                    body
+                }
+            }
+        })
     })
 });
 
@@ -47,5 +56,6 @@ export const {
     useAddPrendreHotelMutation,
     useAddSaisonsMutation,
     useAddTypeslogementsMutation,
-    useAddContaintsMutation
+    useAddContaintsMutation,
+    useAddFairePrestationMutation
 } = createHotelsApi

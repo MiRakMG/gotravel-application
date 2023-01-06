@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 
-function InputTarif({ errors, register }) {
-  const [inputList, setinputList] = useState([
-    { typelogement: "", categorie: "", tarif: "" },
-  ]);
-
+function InputTarif({ setinputList, inputList }) {
   const handleinputchange = (e, index) => {
     const { name, value } = e.target;
     const list = [...inputList];
@@ -22,7 +18,7 @@ function InputTarif({ errors, register }) {
   const handleaddclick = () => {
     setinputList([
       ...inputList,
-      { saison: "", typelogement: "", categorie: "", tarif: "" },
+      { wording_type: "", category: "", price: "", code_saison: "" },
     ]);
   };
 
@@ -33,7 +29,11 @@ function InputTarif({ errors, register }) {
           {inputList.map((x, i) => {
             return (
               <div className="py-4">
-                <select {...register("code_saison")}>
+                <select
+                  name="code_saison"
+                  value={inputList[i].code_saison}
+                  onChange={(e) => handleinputchange(e, i)}
+                >
                   <option value="Moyenne Saison">Moyenne Saison</option>
                   <option value="Haute Saison">Haute Saison</option>
                   <option value="Basse Saison">Basse Saison</option>
@@ -45,27 +45,30 @@ function InputTarif({ errors, register }) {
                   </label>
                   <div className="my-1 flex rounded border border-gray-200 bg-white p-1">
                     <input
-                      {...register("wording_type")}
+                      name="wording_type"
+                      value={inputList[i].wording_type}
+                      onChange={(e) => handleinputchange(e, i)}
                       className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
                       placeholder="Suites, Chambre Double..."
-                      onChange={(e) => handleinputchange(e, i)}
                     />
                   </div>
-                  <p className="text-red-500">{errors.wording_type?.message}</p>
                 </div>
                 <div>
                   <label className="mt-3 h-6 text-sm font-normal leading-8 text-gray-500">
                     Catégorie
                   </label>
                   <div className="py-4">
-                    <select {...register("category")}>
+                    <select
+                      name="category"
+                      value={inputList[i].category}
+                      onChange={(e) => handleinputchange(e, i)}
+                    >
                       <option value="Simple">Simple</option>
                       <option value="Double">Double</option>
                       <option value="Triple">Triple</option>
                       <option value="Quadruple">Quadruple</option>
                     </select>
                   </div>
-                  <p className="text-red-500">{errors.category?.message}</p>
                 </div>
                 <div>
                   <label className="mt-3 h-6 text-sm font-normal leading-8 text-gray-500">
@@ -73,16 +76,16 @@ function InputTarif({ errors, register }) {
                   </label>
                   <div className="my-1 flex rounded border border-gray-200 bg-white p-1">
                     <input
-                      {...register("price")}
-                      className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
+                      name="price"
+                      value={inputList[i].price}
                       onChange={(e) => handleinputchange(e, i)}
+                      className="w-full appearance-none p-1 px-2 text-gray-800 outline-none"
                     />
                     <select name="" id="">
                       <option selected>Euro</option>
                       <option selected>Ariary</option>
                     </select>
                   </div>
-                  <p className="text-red-500">{errors.price?.message}</p>
                 </div>
                 <div>
                   {inputList.length !== 1 && (

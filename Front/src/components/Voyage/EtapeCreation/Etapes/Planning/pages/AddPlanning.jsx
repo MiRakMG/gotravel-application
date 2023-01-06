@@ -19,7 +19,6 @@ export default function AddPlanning({
     price: "",
     value: "Ar",
     type: "Single",
-    date: new Date(dateSelected?.date).toISOString().split("T")[0],
   });
   // Choice in listHOtels
   const [hotelChoice, setHotelChoice] = useState("");
@@ -53,13 +52,16 @@ export default function AddPlanning({
   };
 
   const addPrestation = () => {
-    setListPrestations((prevState) => [...prevState, dataPrestation]);
+    let prestation = dataPrestation;
+    prestation.price = prestation.price + prestation.value;
+    prestation.date = new Date(dateSelected?.date).toISOString().split("T")[0];
+    delete prestation.value;
+    setListPrestations((prevState) => [...prevState, prestation]);
     setDataPrestation({
       wording: "",
       price: "",
       value: "Ar",
       type: "Single",
-      date: new Date(dateSelected?.date).toISOString().split("T")[0],
     });
   };
 
@@ -126,8 +128,8 @@ export default function AddPlanning({
                   value={dataPrestation.value}
                   onChange={(e) => onChangeDatePrestation(e.target)}
                 >
-                  <option value="eur">Euro</option>
-                  <option value="ar">Ariary</option>
+                  <option value="Eur">Euro</option>
+                  <option value="Ar">Ariary</option>
                 </select>
                 <br />
               </div>
