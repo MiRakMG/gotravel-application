@@ -12,13 +12,23 @@ import Final from "./EtapeCreation/Etapes/Final";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationCreateVoyage } from "../Validation/validationCreateVoyage";
+
 import { useAddClientMutation } from "../../Services/clients";
-import { useAddPrendreHotelMutation } from "../../Services/createHotelsApi";
+import {
+  useAddFairePrestationMutation,
+  useAddPrendreHotelMutation,
+} from "../../Services/createHotelsApi";
+import {
+  useAddPrestationMutation,
+  useGetPrestationByWordingPriceQuery,
+} from "../../Services/prestations";
 
 const CreateTrip = () => {
-  const [addClient, { data: dataResultClient, isSuccess: SuccessClient }] =
+  const [addClient, { data: dataResultClient, isSuccess: isSuccessClient }] =
     useAddClientMutation();
   const [addPrendreHotel] = useAddPrendreHotelMutation();
+  const [addPrestation] = useAddPrestationMutation();
+  const [addFairePrestation] = useAddFairePrestationMutation();
 
   const [currentStep, setCurrentStep] = useState(1);
   const [dataClient, setDataClient] = useState({});
@@ -90,20 +100,30 @@ const CreateTrip = () => {
   };
 
   useEffect(() => {
-    console.log(SuccessClient);
-    if (SuccessClient === true) {
+    console.log(isSuccessClient);
+    if (isSuccessClient) {
       const { code_cli } = dataResultClient;
       // Add prendre
-      console.log("Add prendre")
+
       prendre?.forEach((prendreItem) => {
         prendreItem.client = code_cli;
-        console.log(prendreItem)
+        console.log(prendreItem);
         addPrendreHotel(prendreItem);
       });
-    }
-  }, [SuccessClient]);
 
-  console.log(listPrestations)
+      // Add prestation and faire
+      listPrestations?.forEach((prestationItem) => {
+        addPrestation(prestationItem).then(async (result) => {
+          console.log(result);
+          await addFairePrestation({
+            client: code_cli,
+            date: prestationItem.date,
+            prestation: result.data.id,
+          });
+        });
+      });
+    }
+  }, [isSuccessClient])
 
   return (
     <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-4/5">

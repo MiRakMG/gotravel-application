@@ -3,19 +3,18 @@ import { Faire } from "./Faire";
 
 @Entity()
 export class Prestation {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number
+  @Column({ name: "libellé", type: "varchar", length: 100 })
+  wording: string;
 
-    @Column({name: "libellé", type: "varchar", length: 100})
-    wording: string
+  @Column({ name: "prix", type: "varchar", length: 20 })
+  price: string;
 
-    @Column({name: "prix", type: "integer"})
-    price: number
+  @Column({ type: "varchar", length: 75 })
+  type: string;
 
-    @Column({type: "varchar", length: 75})
-    type: string
-
-    @OneToMany(() => Faire, (faire) => faire.prestation, {eager: true})
-    faire: Prestation[]
+  @OneToMany(() => Faire, (faire) => faire.prestation, { eager: true })
+  faire: Prestation[];
 }

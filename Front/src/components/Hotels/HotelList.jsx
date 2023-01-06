@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./HotelList.module.scss";
 
-function HotelList({data}) {
-  
+function HotelList({ data }) {
+  const [typeChoice, setTypeChoice] = useState("");
+  const [seasonChoice, setSeasonChoice] = useState("");
+  const [categoryChoice,  setCategoryChoice] = useState("");
 
   return (
     <div>
@@ -17,40 +19,78 @@ function HotelList({data}) {
           </tr>
         </thead>
         <tbody>
-          {
-            data?.map((hotel) => {
+          {data?.map((hotel) => {
+            const { city, name, content, code_hotel } = hotel;
+            let listSeason = [];
+            let listType = [];
+            // List all season exist in this current hotel
+            content?.forEach((contentItem) => {
+              if (listSeason.indexOf(contentItem.season.code_saison) === -1)
+                listSeason.push(contentItem.season.code_saison);
+            });
 
-              return (
-                <tr key={hotel.code_hotel}>
-                  <td>{hotel.name}</td>
-                  <td>
-                    <select name="Saison">
-                      <option selected>Uni</option>
-                      <option selected>Haute</option>
-                      <option selected>Basse</option>
-                      <option selected>Moyenne</option>
+            // list all type exist in this current hotel
+            content?.forEach((contentItem) => {
+              if (listType.includes(contentItem.type) === false)
+                listType.push(contentItem.type);
+            });
+
+            return (
+              <tr key={code_hotel}>
+                <td>{name}</td>
+                <td>
+                  {listSeason.length > 0 ? (
+                    <select
+                      name="Saison"
+                      value={seasonChoice}
+                      onChange={(e) => setSeasonChoice(e.target.value)}
+                    >
+                      <option value="">Selectionnnez la saison ...</option>
+                      {listSeason?.map((season, id) => (
+                        <option key={id} value={season}>
+                          {season}
+                        </option>
+                      ))}
                     </select>
-                  </td>
-                  <td>
-                    <select name="Categorie">
-                      <option selected>Simple</option>
-                      <option>Double</option>
-                      <option>Triple</option>
-                      <option>Quadruple</option>
+                  ) : (
+                    <p>Aucun saison</p>
+                  )}
+                </td>
+                <td>
+                  <select
+                    name="Categorie"
+                    value={categoryChoice}
+                    onChange={(e) => setCategoryChoice(e.target.value)}
+                  >
+                    <option value="">Selectionnnez la catégorie ...</option>
+                    <option value="Simple">Simple</option>
+                    <option value="Double">Double</option>
+                    <option value="Triple">Triple</option>
+                    <option value="Quadruple">Quadruple</option>
+                  </select>
+                </td>
+                <td>
+                  {listType.length > 0 ? (
+                    <select
+                      name="Type"
+                      value={typeChoice}
+                      onChange={(e) => setTypeChoice(e.target.value)}
+                    >
+                      <option value="">Selectionnnez le type ...</option>
+                      {listType?.map((type, id) => (
+                        <option key={id} value={type?.code_type}>
+                          {type?.wording_type}
+                        </option>
+                      ))}
                     </select>
-                  </td>
-                  <td>
-                    <select name="Type">
-                      <option selected>Suite</option>
-                      <option>Villa</option>
-                      <option>Villa avec piscine</option>
-                    </select>
-                  </td>
-                  <td>90$</td>
-                  <td></td>
-                </tr>
-              );
-            })}
+                  ) : (
+                    <p>Aucun type</p>
+                  )}
+                </td>
+                <td>{city}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

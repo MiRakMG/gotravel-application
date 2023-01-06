@@ -31,6 +31,9 @@ const prestationApi = baseRoute.injectEndpoints({
         { type: "Prestations", code_cli },
       ],
     }),
+    getPrestationByWordingPrice: builder.query({
+      query: ({wording,price}) => `prestations/${wording}/${price}'`
+    })
   }),
 });
 
@@ -38,4 +41,5 @@ export const {
   useGetAllPrestationsQuery,
   useAddPrestationMutation,
   useGetPrestationQuery,
+  useGetPrestationByWordingPriceQuery
 } = prestationApi;

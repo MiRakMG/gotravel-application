@@ -38,6 +38,17 @@ export class PrestationController {
         return res.status(200).json(client)
     }
 
+    public static async getPrestationByWordingPrice(req:Request, res: Response) {
+        const prestation = await AppDataSource.manager.find(Prestation,{
+            where: {
+                wording: req.params.wording,
+                price: req.params.price
+            }
+        })
+
+        return res.status(200).json(prestation)
+    }
+
     public static async create(req: Request, res: Response) 
     {
         const prest = await AppDataSource.manager.save(Prestation, {
