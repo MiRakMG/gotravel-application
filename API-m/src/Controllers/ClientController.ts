@@ -9,7 +9,11 @@ export class ClientController {
         const clients = await AppDataSource.manager.find(Client, {
             relations: {
                 prendre: {
-                    date: true
+                    date: true,
+                    hotel: true
+                },
+                faire: {
+                    prestation: true
                 }
             }
         })
