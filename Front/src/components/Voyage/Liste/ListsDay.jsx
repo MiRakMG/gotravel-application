@@ -1,13 +1,13 @@
 import React from 'react'
+import stylesTable from './ListsDay.module.scss'
 
 export default function ListsDay() {
   return (
-    <div>
+    <div className={stylesTable.container}>
         <h1>Day 1</h1>
-        <div>
-            <h1>Hotels</h1>
-                <div>
-                    <table>
+                <div className={stylesTable.hotels}>
+                    <h2>Hotels</h2>
+                    <table className={stylesTable.detailsHotels}>
                         <thead>
                         <tr>
                             <th>Nom de l'hôtel</th>
@@ -34,7 +34,8 @@ export default function ListsDay() {
                         </tbody>
                     </table>
                 </div>
-            <h2> Listes des préstations</h2>
+                <div  className={stylesTable.prestations}>
+                    <h2> Listes des préstations</h2>
                     <table>
                         <thead>
                         <tr>
@@ -57,7 +58,7 @@ export default function ListsDay() {
                                 </tr>
                         </tbody>
                     </table>
-        </div>
+                </div>
     </div>
   )
 }

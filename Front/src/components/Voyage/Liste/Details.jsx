@@ -21,8 +21,10 @@ function Details() {
                 className={`${styles.submenu} ${isDetailsOpen ? styles.submenu_active : ""}`}
             >
                 <div>
-                    <div>
+                    <div className={styles.detailsVoyage}>
                         <h3>Details du voyage</h3>
+                        <ListsDay/>
+                        <ListsDay/>
                         <ListsDay/>
                     </div>
                         <h1>Total par pax :</h1>
